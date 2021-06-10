@@ -9,7 +9,7 @@ string str;
 int main() {
 	cin >> str;
 	for (int i = 0; i < str.size(); i++) {
-		if (isalpha(str[i])) {
+		if (isalpha(str[i])) { // 알파벳을 확인하는 함수.
 			v.push_back(str[i]);
 		}
 		else
