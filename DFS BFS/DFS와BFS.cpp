@@ -1,0 +1,50 @@
+#include <iostream>
+#include<queue>
+#include <algorithm>
+using namespace std;
+
+bool visited[1001];
+int graph[1001][1001];
+int n, m, s;
+
+void dfs(int x) {
+	visited[x] = true;
+	cout << x << ' ';
+	for (int i = 0; i <= n; i++) {
+		if (graph[x][i] == 1 && visited[i] == 0) {
+			dfs(i);
+		}
+	}
+}
+void bfs(int x) {
+	queue<int>q;
+	q.push(x);
+	visited[x] = true;
+	while (!q.empty()) {
+		int x = q.front();
+		q.pop();
+		cout << x << ' ';
+		for (int i = 0; i <= n ; i++) {
+			if (graph[x][i] == 1 && visited[i] == 0) {
+				q.push(i);
+				visited[i] = true;
+			}
+		}
+	}
+}
+
+
+int main() {
+	cin >> n >> m >> s;
+	for (int i = 0; i < m; i++) {
+		int a, b;
+		cin >> a >> b;
+		graph[a][b] = 1;
+		graph[b][a] = 1;
+	}
+	
+	dfs(s);
+	cout << endl;
+	fill(visited, visited + 1001, false);
+	bfs(s);
+}
