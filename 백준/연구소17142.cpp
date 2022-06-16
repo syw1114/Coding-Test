@@ -12,7 +12,7 @@ int dy[] = { 0, 0 ,1,-1 };
 
 int MAP[MAX][MAX];
 int Time[MAX][MAX];
-bool select[10];
+bool Select[10];
 
 vector<pair<int, int>>v;
 
@@ -64,7 +64,7 @@ void Virus(int a, int cnt) {
 		queue<pair<int, int>>q;
 		memset(Time, -1, sizeof(Time));
 		for (int i = 0; i < v.size(); i++) {
-			if (select[i] == true) {
+			if (Select[i] == true) {
 				q.push(make_pair(v[i].first,v[i].second));
 				Time[v[i].first][v[i].second] = 0;
 			}
@@ -73,10 +73,10 @@ void Virus(int a, int cnt) {
 		return;
 	}
 	for (int i = a; i < v.size(); i++) {
-		if (select[i] == true) continue;
-		select[i] = true;
+		if (Select[i] == true) continue;
+		Select[i] = true;
 		Virus(i + 1, cnt + 1);
-		select[i] = false;
+		Select[i] = false;
 	}
 }
 void solve() {
